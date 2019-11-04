@@ -1,0 +1,9 @@
+[Unit]
+Description=Resumes sabnzbd queue in case it gets paused by disk space
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+
+[Install]
+WantedBy=timers.target

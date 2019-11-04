@@ -1,0 +1,29 @@
+[Unit]
+Description=RClone Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+Environment=RCLONE_CONFIG=/home/rclone/.config/rclone/rclone.conf
+KillMode=none
+RestartSec=5
+ExecStart=/usr/bin/rclone mount gc_one: /arr/rclone/one \
+   --allow-other \
+   --dir-cache-time 72h \
+   --drive-chunk-size 32M \
+   --log-level INFO \
+   --log-file /home/rclone/logs/rclone.log \
+   --poll-interval 5m \
+   --read-only \
+   --rc \
+   --umask 002 \
+   --vfs-read-chunk-size 128M \
+   --vfs-read-chunk-size-limit off
+ExecStop=/bin/fusermount -uz /arr/rclone/one
+Restart=on-failure
+User=rclone
+Group=media
+
+[Install]
+WantedBy=multi-user.target

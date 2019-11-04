@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume sabnzbd if the queue is paused
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/curl "http://127.0.0.1:8080/sabnzbd/api?output=text&apikey=123YOURAPIKEY456&mode=resume"
+
+[Install]
+WantedBy=multi-user.target

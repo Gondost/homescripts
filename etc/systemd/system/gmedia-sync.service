@@ -1,0 +1,13 @@
+[Unit]
+Description=Media sync service, syncs local media to rclone
+PartOf=gmedia.service
+After=gmedia-find.service
+
+[Service]
+Type=oneshot
+ExecStart=/arr/cfg/rclone-move.sh
+User=rclone
+Group=rclone
+
+[Install]
+WantedBy=gmedia.service

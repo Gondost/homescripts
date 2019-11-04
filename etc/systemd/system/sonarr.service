@@ -1,0 +1,17 @@
+[Unit]
+Description=Sonarr Daemon
+Requires=gmedia-tv.service
+Wants=network-online.target
+After=sabnzbd.service
+
+[Service]
+User=sonarr
+Group=media
+Type=simple
+ExecStart=/usr/bin/mono /opt/NzbDrone/NzbDrone.exe -nobrowser
+TimeoutStopSec=20
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

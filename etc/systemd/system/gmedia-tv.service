@@ -1,0 +1,15 @@
+[Unit]
+Description=gmedia mergerfs tv mount
+Requires=rclone.service
+After=rclone.service
+ConditionPathExists=/arr/rclone/one/media/tv
+ConditionPathExists=/arr/dl/done/sonarr_out
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/mergerfs /arr/dl/done/sonarr_out:/arr/rclone/one/media/tv /arr/ofs/merged/one/tv -o rw,async_read=false,use_ino,allow_other,func.getattr=newest,category.action=all,category.create=ff,cache.files=partial,dropcacheonclose=true
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

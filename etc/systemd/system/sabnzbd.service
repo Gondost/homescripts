@@ -1,0 +1,14 @@
+[Unit]
+Description=SABnzbd binary newsreader
+Requires=gmedia-tv.service gmedia-movies.service
+After=gmedia-tv.service gmedia-movies.service
+
+[Service]
+User=sabnzbd
+Group=media
+Type=simple
+ExecStart=/opt/sabnzbd/SABnzbd.py -l0 -f /opt/sabnzbd/sabnzbd.ini
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

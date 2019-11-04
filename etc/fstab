@@ -1,0 +1,12 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# Root, swap, etc partitions would go here
+/dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0
+# Staging drive additions | Downloads go to separate virtual disks so my VM boot disk stays small for backups
+UUID=yourdriveUUIDhere /arr/dl/done ext4 defaults,noatime,data=writeback,nobh,barrier=0 0 2
+UUID=yourdriveUUIDhere /arr/dl/pending ext4 defaults,noatime,data=writeback,nobh,barrier=0 0 2

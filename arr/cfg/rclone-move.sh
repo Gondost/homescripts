@@ -7,7 +7,7 @@ MOVIESTOSYNCRR=`find $MOVIEDIR -mindepth 1 -type f -not -name "*.partial~" -prin
 TVTOSYNCSZ=`find $TVDIR -mindepth 1 -type d -not -empty -not -name "_UNPACK*" -print`
 TVTOSYNCSR=`find $TVDIR -mindepth 1 -type f -not -name "*.partial~" -print`
 
-# Sabnzbd movie done directory
+# Radarr imported, sorted, and renamed movie directory
 if [[ "$MOVIESTOSYNCSZ" != "" || "$MOVIESTOSYNCRR" != "" ]]; then
         echo "INFO: $MOVIEDIR has items to sync, checking rclone move status"
         RCLONEMOVESTATUS=`ps -ef | grep "rclone move" | grep -v 'grep'`
@@ -24,7 +24,7 @@ else
         echo "INFO: $MOVIEDIR has no eligible items to move"
 fi
 
-# Sonarr sorted TV shows directory
+# Sonarr imported, sorted, and renamed TV directory
 if [[ "$TVTOSYNCSZ" != "" || "$TVTOSYNCSR" != "" ]]; then
         echo "INFO: $TVDIR has items to sync, checking rclone move status"
         RCLONEMOVESTATUS=`ps -ef | grep "rclone move" | grep -v 'grep'`
